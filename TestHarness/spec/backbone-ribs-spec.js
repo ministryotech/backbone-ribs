@@ -685,23 +685,10 @@ define(['spec-helper', 'ribs', 'backbone'],
                         var objUt = new Ribs.SecureView({ securityBypass: true });
                         expect(objUt.isSecured()).toEqual(true);
                     });
-
-                    it("returns true when the user has cookie data", function () {
-                        spyOn(CookieManager, 'getSessionData').andCallFake(function() {
-                            return 'ajshdkahdkashdkahs';
-                        });
-                        var objUt = new Ribs.SecureView();
-                        expect(objUt.isSecured()).toEqual(true);
-                        expect(CookieManager.getSessionData).toHaveBeenCalled();
-                    });
                     
-                    it("returns false when the security bypass is not enabled and there is no cookie data", function () {
-                        spyOn(CookieManager, 'getSessionData').andCallFake(function () {
-                            return null;
-                        });
+                    it("throws an error when the security bypass is not enabled", function () {
                         var objUt = new Ribs.SecureView();
-                        expect(objUt.isSecured()).toEqual(false);
-                        expect(CookieManager.getSessionData).toHaveBeenCalled();
+                    expect(function () { objUt.isSecured(); }).toThrow(new Error("The 'getLoggedInUserData' function must be replaced in the child class in order to operate correctly."));
                     });
                 });
 
