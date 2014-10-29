@@ -36,15 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="backbone-ribs.js" />
-    <Compile Include="helpers\cookie-manager.js" />
-    <Compile Include="helpers\global-prototypes.js" />
-    <Compile Include="lib\backbone.js" />
-    <Compile Include="lib\cookie.js" />
     <Compile Include="main.js" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="helpers\" />
-    <Folder Include="lib\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
 </Project>

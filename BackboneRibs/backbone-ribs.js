@@ -11,30 +11,64 @@
     Initialisation code taken from Backbone itself and adapted. 
 */
 
-(function(root, factory) {  
-  // ReSharper disable InconsistentNaming
-  // Set up Backbone Ribs appropriately for the environment. Start with AMD.
-  if (typeof define === 'function' && define.amd) {
-    // ReSharper disable once DuplicatingLocalDeclaration
-    define(['backbone'], function(Backbone, exports) {
-      // Export global even in AMD case in case this script is loaded with
-      // others that may still expect a global Ribs (in the same way as Backbone itself does).
-      root.BackboneRibs = factory(root, exports, Backbone);
-    });
+(function (root, factory) {  
 
-  // Next for Node.js or CommonJS.
-  } else if (typeof exports !== 'undefined') {
-    var Backbone = require('backbone');
-    factory(root, exports, Backbone);
+    // ReSharper disable InconsistentNaming
+    // Set up Backbone Ribs appropriately for the environment. Start with AMD.
+    if (typeof define === 'function' && define.amd) {
+        // ReSharper disable once DuplicatingLocalDeclaration
+        define(['backbone'], function(Backbone, exports) {
+          // Export global even in AMD case in case this script is loaded with
+          // others that may still expect a global Ribs (in the same way as Backbone itself does).
+          root.BackboneRibs = factory(root, exports, Backbone);
+        });
 
-  // Finally, as a browser global.
-  } else {
-    root.BackboneRibs = factory(root, {}, root.Backbone);
-  }
+    // Next for Node.js or CommonJS.
+    } else if (typeof exports !== 'undefined') {
+        var Backbone = require('backbone');
+        factory(root, exports, Backbone);
 
-  // ReSharper disable once ThisInGlobalContext
+        // Finally, as a browser global.
+    } else {
+        root.BackboneRibs = factory(root, {}, root.Backbone);
+    }
+
+    // ReSharper disable once ThisInGlobalContext
+
 }(this, function(root, BackboneRibs, Backbone) {
     // ReSharper restore InconsistentNaming
+    
+    // Set up interrogation function helpers on Object.
+    Object.hasValue = function (obj) {
+        return obj !== undefined && obj !== null && obj !== '';
+    };
+    Object.exists = function (obj) {
+        return obj !== undefined && obj !== null;
+    };
+    Object.isTruthy = function (obj) {
+        return obj !== undefined && obj !== null && obj == true;
+    };
+    Object.isFunction = function (functionToCheck) {
+        if (!Object.exists(functionToCheck)) return false;
+        var getType = {};
+        return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
+    };
+    
+    // Set up basic model extensions where needed for older browsers
+    if (!String.prototype.trim) {
+        String.prototype.trim = function () { return this.replace(/^\s+|\s+$/g, ''); };
+        String.prototype.ltrim = function () { return this.replace(/^\s+/, ''); };
+        String.prototype.rtrim = function () { return this.replace(/\s+$/, ''); };
+        String.prototype.fulltrim = function () { return this.replace(/(?:(?:^|\n)\s+|\s+(?:$|\n))/g, '').replace(/\s+/g, ' '); };
+    }
+    
+    // Set up string replace functions
+    if (!String.prototype.escapeRegExp) {
+        String.prototype.escapeRegExp = function () { return this.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1"); };
+    }
+    if (!String.prototype.replaceAll) {
+        String.prototype.replaceAll = function (find, replace) { return this.replace(new RegExp(find.escapeRegExp(), 'g'), replace); };
+    }
     
     /* 
      * ATTRIBUTE CHECKER: Extension to simplify attribute value checking. 
@@ -114,6 +148,7 @@
             return json;
         };
     };
+
     
     /*
      * MODEL: The Ribs extension of the Backbone Model class.
@@ -296,6 +331,7 @@
         },
         
         // Trigger point to call on resize to keep in line with responsive design.
+        // ReSharper disable once UnusedParameter
         resetStyleState: function (condition) {
         },
         
@@ -353,6 +389,9 @@
      * The exception to this is the 'render' method. Instead, any extending classes should ensure to trigger the
      * 'rendered' and 'rendering' events during the render lifecycle to ensure thet region integration works as
      * expected (see below).
+     * 
+     * It is recommended that the app developer creates an app specific version of this class and replaces the
+     * getLoggedInUserData() function with a function tied to their system. Until this is done 'isSecured' will always fail.
      *      
      * Every SecureView has an optional flag to set that will bypass the secure elements. This is extremely useful when testing the
      * general components of the view when you don't want to hit security walls. The flag can be passed in as an option to the
@@ -390,10 +429,14 @@
             if (this.securityBypass) return;
             throw new Error('A login prompt was requested but has not been implemented in the child class - this function must be replaced!');
         },
+    
+        getLoggedInUserData: function() {
+            throw "The 'getLoggedInUserData' function must be replaced in the child class in order to operate correctly.";
+        },
         
         isSecured: function () {
             if (this.securityBypass) return true;
-            var loggedInUserData = CookieManager.getSessionData();
+            var loggedInUserData = getLoggedInUserData();
             return (loggedInUserData !== undefined && loggedInUserData !== null);
         },
         

@@ -1,5 +1,7 @@
 # README #
 
+This product is currently being adapted from it's original source code and is a work in progress.
+
 ### What is it for? ###
 Under Construction
 
