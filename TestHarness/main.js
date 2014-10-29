@@ -14,10 +14,7 @@
             jquery: "node_modules/jquery/dist/jquery",
             underscore: "node_modules/backbone/node_modules/underscore/underscore",
             backbone: "node_modules/backbone/backbone",
-            ribs: "../BackboneRibs/backbone-ribs",
-            //extensions: "extended-ribs",
-            'spec-helper': "spec-helper",
-            spec: "../spec"
+            ribs: "../BackboneRibs/backbone-ribs"
         },
         shim: {
             jquery: { exports: '$' },

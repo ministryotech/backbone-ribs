@@ -25,7 +25,7 @@ define(['ribs'],
         
         var exRegion = Ribs.Region.extend({
 
-            spinner: '<b>Spinning</b>'
+            spinner: function() { return '<b>Spinning</b>'; }
         });
         
         return {
