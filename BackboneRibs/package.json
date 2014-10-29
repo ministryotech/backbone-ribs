@@ -1,10 +1,27 @@
 {
-  "name": "BackboneRibs",
-  "version": "0.0.0",
-  "description": "BackboneRibs",
-  "main": "app.js",
+  "name": "backbone-ribs",
+  "version": "0.9.0",
+  "description": "Base classes and app level elements to enhance Backbone.JS.",
+  "keywords": "backbone ribs view region helpers",
+  "homepage": "https://bitbucket.org/ministryotech/backbone-ribs",
+  "bugs": {
+    "url": "https://bitbucket.org/ministryotech/backbone-ribs/issues",
+    "email": "keith@ministryotech.co.uk"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.org/ministryotech/backbone-ribs.git"
+  },
+  "main": "backbone-ribs.js",
   "author": {
-    "name": "Keith",
-    "email": ""
+    "name": "The Ministry of Technology",
+    "email": "keith@ministryotech.co.uk"
+  },
+  "dependencies": {
+    "backbone": ">=1.1.0"
+  },
+  "devDependencies": {
+    "minifier": "^0.6.0"
   }
 }
