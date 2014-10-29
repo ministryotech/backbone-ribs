@@ -1,0 +1,15 @@
+Host/bin/
+Host/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+Host/obj/
+*.suo
+*.nupkg
+packages/
+ResponsiveMq/.ntvs_analysis.dat
+ResponsiveMq/node_modules/
+deploy/npm-debug.log
+Host/.ntvs_analysis.dat
+Host/node_modules/
+Host/
+responsive-mq.min.js
+deploy/content/
+.ntvs_analysis.dat

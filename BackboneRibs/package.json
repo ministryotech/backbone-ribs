@@ -1,0 +1,10 @@
+{
+  "name": "BackboneRibs",
+  "version": "0.0.0",
+  "description": "BackboneRibs",
+  "main": "app.js",
+  "author": {
+    "name": "Keith",
+    "email": ""
+  }
+}
