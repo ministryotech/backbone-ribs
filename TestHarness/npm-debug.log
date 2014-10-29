@@ -1,0 +1,85 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   'jasmine@1.4.0' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.32
+4 verbose node symlink C:\Program Files\nodejs\\node.exe
+5 warn package.json TestHarness@0.0.0 No repository field.
+6 warn package.json TestHarness@0.0.0 No README data
+7 verbose readDependencies using package.json deps
+8 verbose cache add [ 'jasmine@1.4.0', null ]
+9 verbose cache add name=undefined spec="jasmine@1.4.0" args=["jasmine@1.4.0",null]
+10 verbose parsed url { protocol: null,
+10 verbose parsed url   slashes: null,
+10 verbose parsed url   auth: null,
+10 verbose parsed url   host: null,
+10 verbose parsed url   port: null,
+10 verbose parsed url   hostname: null,
+10 verbose parsed url   hash: null,
+10 verbose parsed url   search: null,
+10 verbose parsed url   query: null,
+10 verbose parsed url   pathname: 'jasmine@1.4.0',
+10 verbose parsed url   path: 'jasmine@1.4.0',
+10 verbose parsed url   href: 'jasmine@1.4.0' }
+11 verbose cache add name="jasmine" spec="1.4.0" args=["jasmine","1.4.0"]
+12 verbose parsed url { protocol: null,
+12 verbose parsed url   slashes: null,
+12 verbose parsed url   auth: null,
+12 verbose parsed url   host: null,
+12 verbose parsed url   port: null,
+12 verbose parsed url   hostname: null,
+12 verbose parsed url   hash: null,
+12 verbose parsed url   search: null,
+12 verbose parsed url   query: null,
+12 verbose parsed url   pathname: '1.4.0',
+12 verbose parsed url   path: '1.4.0',
+12 verbose parsed url   href: '1.4.0' }
+13 verbose addNamed [ 'jasmine', '1.4.0' ]
+14 verbose addNamed [ '1.4.0', '1.4.0' ]
+15 silly lockFile 8eb378e2-jasmine-1-4-0 jasmine@1.4.0
+16 verbose lock jasmine@1.4.0 C:\Users\Keith\AppData\Roaming\npm-cache\8eb378e2-jasmine-1-4-0.lock
+17 verbose request where is /jasmine
+18 verbose request registry https://registry.npmjs.org/
+19 verbose request id f0add13bd3d73787
+20 verbose url raw /jasmine
+21 verbose url resolving [ 'https://registry.npmjs.org/', './jasmine' ]
+22 verbose url resolved https://registry.npmjs.org/jasmine
+23 verbose request where is https://registry.npmjs.org/jasmine
+24 info trying registry request attempt 1 at 16:27:50
+25 verbose etag "9DWBDJTK4IYJTR378RDA1IZHC"
+26 http GET https://registry.npmjs.org/jasmine
+27 http 304 https://registry.npmjs.org/jasmine
+28 silly registry.get cb [ 304,
+28 silly registry.get   { date: 'Wed, 29 Oct 2014 16:27:49 GMT',
+28 silly registry.get     server: 'Apache',
+28 silly registry.get     via: '1.1 varnish',
+28 silly registry.get     'last-modified': 'Wed, 29 Oct 2014 16:27:49 GMT',
+28 silly registry.get     'cache-control': 'max-age=60',
+28 silly registry.get     etag: '"9DWBDJTK4IYJTR378RDA1IZHC"',
+28 silly registry.get     age: '53',
+28 silly registry.get     'x-served-by': 'cache-lcy1123-LCY',
+28 silly registry.get     'x-cache': 'HIT',
+28 silly registry.get     'x-cache-hits': '1',
+28 silly registry.get     'x-timer': 'S1414600069.756781,VS0,VE0',
+28 silly registry.get     vary: 'Accept',
+28 silly registry.get     'content-length': '0',
+28 silly registry.get     'keep-alive': 'timeout=10, max=50',
+28 silly registry.get     connection: 'Keep-Alive' } ]
+29 verbose etag https://registry.npmjs.org/jasmine from cache
+30 silly lockFile 8eb378e2-jasmine-1-4-0 jasmine@1.4.0
+31 silly lockFile 8eb378e2-jasmine-1-4-0 jasmine@1.4.0
+32 error Error: version not found: jasmine@1.4.0
+32 error     at C:\Program Files\nodejs\node_modules\npm\lib\cache\add-named.js:125:12
+32 error     at saved (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\get.js:167:7)
+32 error     at Object.oncomplete (fs.js:107:15)
+33 error If you need help, you may report this *entire* log,
+33 error including the npm and node versions, at:
+33 error     <http://github.com/npm/npm/issues>
+34 error System Windows_NT 6.2.9200
+35 error command "C:\\Program Files\\nodejs\\\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "jasmine@1.4.0"
+36 error cwd C:\Development\Projects\Ministry OSS\backbone-ribs\TestHarness
+37 error node -v v0.10.32
+38 error npm -v 1.4.28
+39 verbose exit [ 1, true ]

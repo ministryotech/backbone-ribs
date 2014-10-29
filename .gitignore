@@ -14,3 +14,4 @@ responsive-mq.min.js
 deploy/content/
 .ntvs_analysis.dat
 BackboneRibs/node_modules/
+TestHarness/node_modules/

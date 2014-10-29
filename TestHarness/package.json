@@ -1,0 +1,22 @@
+{
+  "name": "Test Harness for Backbone Ribs",
+  "version": "1.0.0",
+  "description": "Test Harness",
+  "homepage": "https://bitbucket.org/ministryotech/backbone-ribs",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.org/ministryotech/backbone-ribs.git"
+  },
+  "main": "main.js",
+  "author": {
+    "name": "The Ministry of Technology",
+    "email": "keith@ministryotech.co.uk"
+  },
+  "dependencies": {
+    "backbone": ">=1.1.0",
+    "requirejs": ">=2.1.0",
+    "jquery": ">=1.10.0",
+    "json2": ">=0.4.0"
+  }
+}

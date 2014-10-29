@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "BackboneRibs", "BackboneRibs\BackboneRibs.njsproj", "{5FD2056C-9284-4584-96F1-6B51B7DA5E29}"
 EndProject
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "TestHarness", "TestHarness\TestHarness.njsproj", "{DE64E508-079E-4518-A5EE-9F3E4795A3D7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{5FD2056C-9284-4584-96F1-6B51B7DA5E29}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FD2056C-9284-4584-96F1-6B51B7DA5E29}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FD2056C-9284-4584-96F1-6B51B7DA5E29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE64E508-079E-4518-A5EE-9F3E4795A3D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE64E508-079E-4518-A5EE-9F3E4795A3D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE64E508-079E-4518-A5EE-9F3E4795A3D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE64E508-079E-4518-A5EE-9F3E4795A3D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
