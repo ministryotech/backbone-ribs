@@ -1,6 +1,6 @@
 # README #
 
-Backbone Ribs is an extension project which adds an additional layer of functionality to Backbone that simplifies creation of basic types of views, adds more granular JSON handling and separates concerns further by separating Views from Regions (see Views and regions below for details) which enables propper garbage handling without having to roll it all yourself.
+Backbone Ribs is an extension project which adds an additional layer of functionality to Backbone that simplifies creation of basic types of views, adds more granular JSON handling and separates concerns further by separating Views from Regions (see Views and regions below for details) which enables proper garbage handling without having to roll it all yourself.
 
 ### Common Extensions ###
 Many of the Ribs versions of the core Backbone objects listed below are extended by implementing one or more of the following extensions.
@@ -177,6 +177,20 @@ STATE MANAGEMENT: The default value of state requirement on a secured view is 't
           
 USAGE: The purpose of the SecureView is to secure the render method, redirecting to rendering the appropriate login elements when authentication is required. It requires that the 'applySecureLoginPrompt' method is replaced in any child classes (or through an extension).
 
+### Javascript Functional Extensions ###
+As well as the core part of Ribs itself, the Ribs library also adds the following global Javascript helpers to aid in creating more terse, readable code...
+
+* Object.hasValue - Returns true if the object is not undefined, null or empty
+* Object.exists - Returns true if the object is not undefined or null
+* Object.isTruthy - Returns true if the object is not undefined or null and is true
+* Object.isFunction - Returns true if the object is not undefined or null and is a function
+* String.trim() - Set up if not supported by the target browser
+* String.ltrim() - Set up if not supported by the target browser
+* String.rtrim() - Set up if not supported by the target browser
+* String.fulltrim() - Set up if not supported by the target browser
+* String.escapeRegExp() - Escape regular expressions
+* String.replaceAll(find, replace) - Find and replace one value with another
+
 ### How do I get set up? ###
 Like Backbone itself, Ribs is designed to be used either traditionallly, exposing itself as a global scope object, or through an AMD pattern implemented by a product like RequireJS.
 
@@ -284,13 +298,15 @@ define(['ribs'],
 ```
 
 ### Where can I get it? ###
-You can download the javascript file from the source here and add it to your website manually or you can use any of the following pacakge managers...
+You can download the javascript file (dev or minified version) from the downloads page here and add it to your website manually or you can use any of the following package managers...
 
 - **NPM** - TBC
 - **NUGET** - TBC
 
 ### Contribution guidelines ###
 If you would like to contribute to the project, please contact me.
+
+The source code can be used in a simple text editor or within Visual Studio using NodeJS Tools for Visual Studio.
 
 ### Who do I talk to? ###
 * Keith Jackson - keith@ministryotech.co.uk

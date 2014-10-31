@@ -1,5 +1,5 @@
 ﻿/*
-    Backbone Ribs 0.9.0
+    Backbone Ribs 1.0.0
     -------------------
     Base classes and app level elements to enhance Backbone.JS.
 
@@ -538,6 +538,8 @@
             }
         }
     });
+
+    Ribs.VERSION = "1.0.0";
 
     return Ribs;
 }));

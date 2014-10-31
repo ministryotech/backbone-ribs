@@ -15,3 +15,5 @@ deploy/content/
 .ntvs_analysis.dat
 BackboneRibs/node_modules/
 TestHarness/node_modules/
+.ntvs_analysis.*
+BackboneRibs/backbone-ribs.min.js

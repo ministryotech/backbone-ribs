@@ -1,0 +1,6 @@
+﻿*.dat
+*.tmp
+jquery*.js
+*.html
+.npmignore
+*.njsproj

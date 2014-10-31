@@ -9,6 +9,8 @@ Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "TestHarness", "TestHarness\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{81F77393-C6D2-431D-9C26-7AC1026631AB}"
 	ProjectSection(SolutionItems) = preProject
+		deploy\backbone-ribs.nuspec = deploy\backbone-ribs.nuspec
+		deploy\deploy-pms.bat = deploy\deploy-pms.bat
 		README.md = README.md
 	EndProjectSection
 EndProject
