@@ -7,6 +7,11 @@ Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "BackboneRibs", "BackboneRib
 EndProject
 Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "TestHarness", "TestHarness\TestHarness.njsproj", "{DE64E508-079E-4518-A5EE-9F3E4795A3D7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{81F77393-C6D2-431D-9C26-7AC1026631AB}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
