@@ -14,6 +14,10 @@ Ribs.Model.prototype.initialize.call(this, attributes, options);
 Every Ribs based model has a name to help identify it. The name can be passed in as an option to the constructor and will be stored within the model object or can be specified when defining the child class. A Ribs model applies a default validity check that will log any validation errors to the console and throw them up the tree for handling as needed.
      
 EVENTS:
+
+1. Item 1
+2. Items 2
+
 'fetching': Triggered whenever any model's fetch method has started.
         
 IMPLEMENTS:
