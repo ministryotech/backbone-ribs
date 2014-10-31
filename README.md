@@ -15,14 +15,12 @@ Every Ribs based model has a name to help identify it. The name can be passed in
      
 EVENTS:
 
-* 1. Item 1
-* 2. Item 2
-
-'fetching': Triggered whenever any model's fetch method has started.
+* 'fetching': Triggered whenever any model's fetch method has started.
         
 IMPLEMENTS:
-Attribute Checker: Adds the functionality of the extension to allow quick method calls to check the null / undefined state of attributes - allows far more concise validation code.
-JSON Formatter: Adds functionality to support recursive JSON transformations of model / collection hierarchies.
+
+* Attribute Checker: Adds the functionality of the extension to allow quick method calls to check the null / undefined state of attributes - allows far more concise validation code.
+* JSON Formatter: Adds functionality to support recursive JSON transformations of model / collection hierarchies.
 
 ### How do I get set up? ###
 Like Backbone itself, Ribs is designed to be used either traditionallly, exposing itself as a global scope object, or through an AMD pattern implemented by a product like RequireJS.
