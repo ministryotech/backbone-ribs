@@ -3,7 +3,22 @@
 Backbone Ribs is an extension project which adds an additional layer of functionality to Backbone that simplifies creation of basic types of views, adds more granular JSON handling and separates concerns further by separating Views from Regions (see Views and regions below for details) which enables propper garbage handling without having to roll it all yourself.
 
 ### What is it for? ###
-Making Backbone development easier.
+Making Backbone development easier. Ribs currently exposes the following primary objects exposed by the Backbone object in an extended form.
+
+#### Ribs.Model ####
+Any class extending BackboneRibs.Model should ensure to call the replaced methods as follows...
+```
+#!javascript
+Ribs.Model.prototype.initialize.call(this, attributes, options);
+```
+Every Ribs based model has a name to help identify it. The name can be passed in as an option to the constructor and will be stored within the model object or can be specified when defining the child class. A Ribs model applies a default validity check that will log any validation errors to the console and throw them up the tree for handling as needed.
+     
+EVENTS:
+- 'fetching': Triggered whenever any model's fetch method has started.
+        
+IMPLEMENTS:
+- Attribute Checker: Adds the functionality of the extension to allow quick method calls to check the null / undefined state of attributes - allows far more concise validation code.
+- JSON Formatter: Adds functionality to support recursive JSON transformations of model / collection hierarchies.
 
 ### How do I get set up? ###
 Like Backbone itself, Ribs is designed to be used either traditionallly, exposing itself as a global scope object, or through an AMD pattern implemented by a product like RequireJS.
