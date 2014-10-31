@@ -388,6 +388,7 @@
      * 
      * It is recommended that the app developer creates an app specific version of this class and replaces the
      * getLoggedInUserData() function with a function tied to their system. Until this is done 'isSecured' will always fail.
+     * Replacing the default implementations of applySecureLoginPrompt() and applyTimedOutSecureLoginPrompt() is also recommended.
      *      
      * Every SecureView has an optional flag to set that will bypass the secure elements. This is extremely useful when testing the
      * general components of the view when you don't want to hit security walls. The flag can be passed in as an option to the
