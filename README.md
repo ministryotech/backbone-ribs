@@ -15,8 +15,8 @@ Every Ribs based model has a name to help identify it. The name can be passed in
      
 EVENTS:
 
-1. Item 1
-2. Items 2
+* 1. Item 1
+* 2. Item 2
 
 'fetching': Triggered whenever any model's fetch method has started.
         
