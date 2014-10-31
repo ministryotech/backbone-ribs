@@ -11,19 +11,19 @@
     Initialisation code taken from Backbone itself and adapted. 
 */
 
-(function (root, factory) {  
+(function(root, factory) {
 
     // ReSharper disable InconsistentNaming
     // Set up Backbone Ribs appropriately for the environment. Start with AMD.
     if (typeof define === 'function' && define.amd) {
         // ReSharper disable once DuplicatingLocalDeclaration
         define(['backbone', 'exports'], function(Backbone, exports) {
-          // Export global even in AMD case in case this script is loaded with
-          // others that may still expect a global Ribs (in the same way as Backbone itself does).
-          root.Ribs = factory(root, exports, Backbone);
+            // Export global even in AMD case in case this script is loaded with
+            // others that may still expect a global Ribs (in the same way as Backbone itself does).
+            root.Ribs = factory(root, exports, Backbone);
         });
 
-    // Next for Node.js or CommonJS.
+        // Next for Node.js or CommonJS.
     } else if (typeof exports !== 'undefined') {
         var Backbone = require('backbone');
         factory(root, exports, Backbone);
@@ -35,43 +35,43 @@
 
     // ReSharper disable once ThisInGlobalContext
 
-}(this, function (root, Ribs, Backbone) {
+}(this, function(root, Ribs, Backbone) {
 
-        // ReSharper restore InconsistentNaming
+    // ReSharper restore InconsistentNaming
 
-        // Set up interrogation function helpers on Object.
-        Object.hasValue = function(obj) {
-            return obj !== undefined && obj !== null && obj !== '';
-        };
-        Object.exists = function(obj) {
-            return obj !== undefined && obj !== null;
-        };
-        Object.isTruthy = function(obj) {
-            return obj !== undefined && obj !== null && obj == true;
-        };
-        Object.isFunction = function(functionToCheck) {
-            if (!Object.exists(functionToCheck)) return false;
-            var getType = {};
-            return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
-        };
+    // Set up interrogation function helpers on Object.
+    Object.hasValue = function(obj) {
+        return obj !== undefined && obj !== null && obj !== '';
+    };
+    Object.exists = function(obj) {
+        return obj !== undefined && obj !== null;
+    };
+    Object.isTruthy = function(obj) {
+        return obj !== undefined && obj !== null && obj == true;
+    };
+    Object.isFunction = function(functionToCheck) {
+        if (!Object.exists(functionToCheck)) return false;
+        var getType = {};
+        return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
+    };
 
-        // Set up basic model extensions where needed for older browsers
-        if (!String.prototype.trim) {
-            String.prototype.trim = function() { return this.replace(/^\s+|\s+$/g, ''); };
-            String.prototype.ltrim = function() { return this.replace(/^\s+/, ''); };
-            String.prototype.rtrim = function() { return this.replace(/\s+$/, ''); };
-            String.prototype.fulltrim = function() { return this.replace(/(?:(?:^|\n)\s+|\s+(?:$|\n))/g, '').replace(/\s+/g, ' '); };
-        }
+    // Set up basic model extensions where needed for older browsers
+    if (!String.prototype.trim) {
+        String.prototype.trim = function() { return this.replace(/^\s+|\s+$/g, ''); };
+        String.prototype.ltrim = function() { return this.replace(/^\s+/, ''); };
+        String.prototype.rtrim = function() { return this.replace(/\s+$/, ''); };
+        String.prototype.fulltrim = function() { return this.replace(/(?:(?:^|\n)\s+|\s+(?:$|\n))/g, '').replace(/\s+/g, ' '); };
+    }
 
-        // Set up string replace functions
-        if (!String.prototype.escapeRegExp) {
-            String.prototype.escapeRegExp = function() { return this.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1"); };
-        }
-        if (!String.prototype.replaceAll) {
-            String.prototype.replaceAll = function(find, replace) { return this.replace(new RegExp(find.escapeRegExp(), 'g'), replace); };
-        }
+    // Set up string replace functions
+    if (!String.prototype.escapeRegExp) {
+        String.prototype.escapeRegExp = function() { return this.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1"); };
+    }
+    if (!String.prototype.replaceAll) {
+        String.prototype.replaceAll = function(find, replace) { return this.replace(new RegExp(find.escapeRegExp(), 'g'), replace); };
+    }
 
-        /* 
+    /* 
      * ATTRIBUTE CHECKER: Extension to simplify attribute value checking. 
      * ------------------------------------------------------------------
      * The attribute checker extension offers methods to extend models and collections that allow for less verbose
@@ -87,23 +87,23 @@
 	 *          throw new Error('The myAttr attribute is required.')
      *      };
      */
-        var attributeChecker = {
-            isNullAttribute: function(attributes, attributeName) {
-                return (attributes === undefined || attributes === null || attributes[attributeName] === undefined || attributes[attributeName] === null);
-            },
+    var attributeChecker = {
+        isNullAttribute: function(attributes, attributeName) {
+            return (attributes === undefined || attributes === null || attributes[attributeName] === undefined || attributes[attributeName] === null);
+        },
 
-            isNullOrEmptyAttribute: function(attributes, attributeName) {
-                return (this.isNullAttribute(attributes, attributeName) || attributes[attributeName] === '');
-            },
+        isNullOrEmptyAttribute: function(attributes, attributeName) {
+            return (this.isNullAttribute(attributes, attributeName) || attributes[attributeName] === '');
+        },
 
-            isNullOrFalseAttribute: function(attributes, attributeName) {
-                return (this.isNullAttribute(attributes, attributeName) || attributes[attributeName] === false || attributes[attributeName] === 0 ||
-                    attributes[attributeName] === -1 || attributes[attributeName].toString().toLowerCase() === 'false');
-            }
-        };
+        isNullOrFalseAttribute: function(attributes, attributeName) {
+            return (this.isNullAttribute(attributes, attributeName) || attributes[attributeName] === false || attributes[attributeName] === 0 ||
+                attributes[attributeName] === -1 || attributes[attributeName].toString().toLowerCase() === 'false');
+        }
+    };
 
 
-        /* 
+    /* 
      * JSON FORMATTER: Extension for formatting models and collections to raw JSON. 
      * ----------------------------------------------------------------------------
      * The traditional toJSON() method is limited to transforming the current object. Overriding the toJSON() method itself
@@ -119,38 +119,38 @@
      * If no level parameter is provided then the first level of children are processed by default. The level relates to the
      * initial MOdel structure, so the collection itself constitutes a level.
      */
-        var modelJsonFormatter = function() {
+    var modelJsonFormatter = function() {
 
-            var convertNestedJson = function(json, level) {
-                _.each(json, function(value, name) {
-                    if ((value !== undefined && value !== null) && _.isObject(value)) {
-                        if (level > 0) {
-                            json[name] = convertNestedJson(value, level - 1);
-                        } else {
-                            json[name] = value;
-                        }
-                    };
-                    if ((value !== undefined && value !== null) && _.isFunction(value.toJSON)) {
-                        if (level > 0) {
-                            json[name] = convertNestedJson(value.toJSON(), level - 1);
-                        } else {
-                            json[name] = value.toJSON();
-                        }
-                    };
-                });
-                return json;
-            };
-
-            this.toJSONRecursive = function(level) {
-                level = level || 1;
-                var json = _.clone(this.attributes);
-                json = convertNestedJson(json, level);
-                return json;
-            };
+        var convertNestedJson = function(json, level) {
+            _.each(json, function(value, name) {
+                if ((value !== undefined && value !== null) && _.isObject(value)) {
+                    if (level > 0) {
+                        json[name] = convertNestedJson(value, level - 1);
+                    } else {
+                        json[name] = value;
+                    }
+                };
+                if ((value !== undefined && value !== null) && _.isFunction(value.toJSON)) {
+                    if (level > 0) {
+                        json[name] = convertNestedJson(value.toJSON(), level - 1);
+                    } else {
+                        json[name] = value.toJSON();
+                    }
+                };
+            });
+            return json;
         };
 
+        this.toJSONRecursive = function(level) {
+            level = level || 1;
+            var json = _.clone(this.attributes);
+            json = convertNestedJson(json, level);
+            return json;
+        };
+    };
 
-        /*
+
+    /*
      * MODEL: The Ribs extension of the Backbone Model class.
      * ------------------------------------------------------
      * Any class extending BackboneRibs.Model should ensure to call the replaced methods as follows...
@@ -172,29 +172,29 @@
      *    JSON Formatter: Adds functionality to support recursive JSON transformations of model / collection
      * hierarchies.
      */
-        Ribs.Model = Backbone.Model.extend(_.extend({
-            name: 'Unnamed Model',
+    Ribs.Model = Backbone.Model.extend(_.extend({
+        name: 'Unnamed Model',
 
-            initialize: function(attributes, options) {
-                this.options = options || {};
-                Backbone.Model.prototype.initialize.call(this, attributes, options);
-                if (this.options.name) {
-                    this.name = this.options.name;
-                }
-
-                this.on('invalid', function(model, error) {
-                    throw new Error(error);
-                });
-            },
-
-            fetch: function(options) {
-                this.trigger('fetching', this, options);
-                return Backbone.Model.prototype.fetch.call(this, options);
+        initialize: function(attributes, options) {
+            this.options = options || {};
+            Backbone.Model.prototype.initialize.call(this, attributes, options);
+            if (this.options.name) {
+                this.name = this.options.name;
             }
-        }, attributeChecker, new modelJsonFormatter()));
+
+            this.on('invalid', function(model, error) {
+                throw new Error(error);
+            });
+        },
+
+        fetch: function(options) {
+            this.trigger('fetching', this, options);
+            return Backbone.Model.prototype.fetch.call(this, options);
+        }
+    }, attributeChecker, new modelJsonFormatter()));
 
 
-        /*
+    /*
      * COLLECTION: The Ribs extension of the Backbone Collection class.
      * ----------------------------------------------------------------
      * Any class extending BackboneRibs.Collection should ensure to call the replaced methods as follows...
@@ -213,25 +213,25 @@
      *    JSON Formatter: Adds functionality to support recursive JSON transformations of model / collection
      * hierarchies.
      */
-        Ribs.Collection = Backbone.Collection.extend(_.extend({
-            name: 'Unnamed Collection',
+    Ribs.Collection = Backbone.Collection.extend(_.extend({
+        name: 'Unnamed Collection',
 
-            initialize: function(models, options) {
-                this.options = options || {};
-                Backbone.Collection.prototype.initialize.call(this, models, options);
-                if (this.options.name) {
-                    this.name = this.options.name;
-                }
-            },
-
-            fetch: function(options) {
-                this.trigger('fetching', this, options);
-                return Backbone.Collection.prototype.fetch.call(this, options);
+        initialize: function(models, options) {
+            this.options = options || {};
+            Backbone.Collection.prototype.initialize.call(this, models, options);
+            if (this.options.name) {
+                this.name = this.options.name;
             }
-        }, attributeChecker, new modelJsonFormatter()));
+        },
+
+        fetch: function(options) {
+            this.trigger('fetching', this, options);
+            return Backbone.Collection.prototype.fetch.call(this, options);
+        }
+    }, attributeChecker, new modelJsonFormatter()));
 
 
-        /*
+    /*
      * VIEW: The Ribs extension of the Backbone View class.
      * ----------------------------------------------------
      * Any class extending BackboneRibs.View should ensure to call the replaced methods as follows...
@@ -280,72 +280,72 @@
      * - Is it new markup? = View
      * - Is the markup a container that's already present in a page or generated by another view? = Region
      */
-        Ribs.View = Backbone.View.extend({
-            name: 'Unnamed View',
-            sectionName: 'No section specified',
+    Ribs.View = Backbone.View.extend({
+        name: 'Unnamed View',
+        sectionName: 'No section specified',
 
-            // Indicates reciance on state variables.
-            stateRequired: false,
+        // Indicates reciance on state variables.
+        stateRequired: false,
 
-            template: undefined,
+        template: undefined,
 
-            bindings: [],
+        bindings: [],
 
-            initialize: function(options) {
-                this.options = options || {};
-                Backbone.View.prototype.initialize.call(this, options);
-                if (this.options.name) {
-                    this.name = this.options.name;
-                }
-                if (this.options.sectionName) {
-                    this.sectionName = this.options.sectionName;
-                }
-                if (this.options.template) {
-                    this.template = this.options.template;
-                }
-            },
-
-            bindToModel: function(model, ev, callback, that) {
-                if (that === undefined || that === null) {
-                    throw "The value of 'that' needs the context of the extending class in order to operate correctly.";
-                }
-                model.bind(ev, callback, that);
-                this.bindings.push({ model: model, ev: ev, callback: callback });
-            },
-
-            dispose: function() {
-                this.unbindFromAllModels(); // Will unbind all events this view has bound to
-                this.stopListening();
-                this.unbind(); // This will unbind all listeners to events from this view. This is probably not necessary because this view will be garbage collected.
-                this.remove(); // Uses the default Backbone.View.remove() method which removes this.el from the DOM and removes DOM events.
-                this.undelegateEvents();
-            },
-
-            // When replacing, ensure to trigger the 'rendering' and 'rendered' events.
-            render: function() {
-                this.trigger('rendered');
-                return this;
-            },
-
-            // Trigger point to call on resize to keep in line with responsive design.
-            // ReSharper disable once UnusedParameter
-            resetStyleState: function(condition) {
-            },
-
-            trash: function() {
-                this.dispose();
-            },
-
-            unbindFromAllModels: function() {
-                _.each(this.bindings, function(binding) {
-                    binding.model.unbind(binding.ev, binding.callback);
-                });
-                this.bindings = [];
+        initialize: function(options) {
+            this.options = options || {};
+            Backbone.View.prototype.initialize.call(this, options);
+            if (this.options.name) {
+                this.name = this.options.name;
             }
-        });
+            if (this.options.sectionName) {
+                this.sectionName = this.options.sectionName;
+            }
+            if (this.options.template) {
+                this.template = this.options.template;
+            }
+        },
+
+        bindToModel: function(model, ev, callback, that) {
+            if (that === undefined || that === null) {
+                throw "The value of 'that' needs the context of the extending class in order to operate correctly.";
+            }
+            model.bind(ev, callback, that);
+            this.bindings.push({ model: model, ev: ev, callback: callback });
+        },
+
+        dispose: function() {
+            this.unbindFromAllModels(); // Will unbind all events this view has bound to
+            this.stopListening();
+            this.unbind(); // This will unbind all listeners to events from this view. This is probably not necessary because this view will be garbage collected.
+            this.remove(); // Uses the default Backbone.View.remove() method which removes this.el from the DOM and removes DOM events.
+            this.undelegateEvents();
+        },
+
+        // When replacing, ensure to trigger the 'rendering' and 'rendered' events.
+        render: function() {
+            this.trigger('rendered');
+            return this;
+        },
+
+        // Trigger point to call on resize to keep in line with responsive design.
+        // ReSharper disable once UnusedParameter
+        resetStyleState: function(condition) {
+        },
+
+        trash: function() {
+            this.dispose();
+        },
+
+        unbindFromAllModels: function() {
+            _.each(this.bindings, function(binding) {
+                binding.model.unbind(binding.ev, binding.callback);
+            });
+            this.bindings = [];
+        }
+    });
 
 
-        /*
+    /*
      * SIMPLE VIEW: Specialised Ribs View.
      * -----------------------------------
      * Any class extending BackboneRibs.SimpleView should ensure to call the replaced methods as follows...
@@ -358,26 +358,26 @@
      * Ribs Simple view is for just those cases, where a simple extension or instatntiation with a template is all
      * that is needed.
      */
-        Ribs.SimpleView = Ribs.View.extend({
-            template: function() { return '<b>No template defined!</b>'; },
+    Ribs.SimpleView = Ribs.View.extend({
+        template: function() { return '<b>No template defined!</b>'; },
 
-            initialize: function(options) {
-                this.options = options || {};
-                Ribs.View.prototype.initialize.call(this, options);
-                if (this.options.template) {
-                    this.template = this.options.template;
-                }
-            },
-
-            render: function() {
-                this.$el.html(this.template(this));
-                this.trigger('rendered');
-                return this;
+        initialize: function(options) {
+            this.options = options || {};
+            Ribs.View.prototype.initialize.call(this, options);
+            if (this.options.template) {
+                this.template = this.options.template;
             }
-        });
+        },
+
+        render: function() {
+            this.$el.html(this.template(this));
+            this.trigger('rendered');
+            return this;
+        }
+    });
 
 
-        /*
+    /*
      * SECURE VIEW: Specialised Ribs View.
      * -----------------------------------
      * Any class extending BackboneRibs.SecureView should ensure to call the replaced methods as follows...
@@ -399,59 +399,59 @@
      * elements when authentication is required. It requires that the 'applySecureLoginPrompt' method is replaced in any child
      * classes (or through an extension).
      */
-        Ribs.SecureView = Ribs.View.extend({
-            name: 'Unnamed Secure View',
-            stateRequired: true,
+    Ribs.SecureView = Ribs.View.extend({
+        name: 'Unnamed Secure View',
+        stateRequired: true,
 
-            // Flag to pass in when testing child views.
-            securityBypass: false,
+        // Flag to pass in when testing child views.
+        securityBypass: false,
 
-            initialize: function(options) {
-                this.options = options || {};
-                Ribs.View.prototype.initialize.call(this, options);
+        initialize: function(options) {
+            this.options = options || {};
+            Ribs.View.prototype.initialize.call(this, options);
 
-                if (this.options.securityBypass !== undefined && this.options.securityBypass !== null) {
-                    this.securityBypass = this.options.securityBypass;
-                }
-            },
-
-            applySecureLoginPrompt: function() {
-                if (this.securityBypass) return;
-                throw new Error('A login prompt was requested but has not been implemented in the child class - this function must be replaced!');
-            },
-
-            applyTimedOutSecureLoginPrompt: function() {
-                if (this.securityBypass) return;
-                throw new Error('A login prompt was requested but has not been implemented in the child class - this function must be replaced!');
-            },
-
-            getLoggedInUserData: function() {
-                throw new Error("The 'getLoggedInUserData' function must be replaced in the child class in order to operate correctly.");
-            },
-
-            isSecured: function() {
-                if (this.securityBypass) return true;
-                var loggedInUserData = this.getLoggedInUserData();
-                return (loggedInUserData !== undefined && loggedInUserData !== null);
-            },
-
-            render: function() {
-                return this.secureRender();
-            },
-
-            secureRender: function() {
-                if (this.isSecured()) {
-                    this.$el.html(this.template(this));
-                } else {
-                    this.applySecureLoginPrompt();
-                }
-                this.trigger('rendered');
-                return this;
+            if (this.options.securityBypass !== undefined && this.options.securityBypass !== null) {
+                this.securityBypass = this.options.securityBypass;
             }
-        });
+        },
+
+        applySecureLoginPrompt: function() {
+            if (this.securityBypass) return;
+            throw new Error('A login prompt was requested but has not been implemented in the child class - this function must be replaced!');
+        },
+
+        applyTimedOutSecureLoginPrompt: function() {
+            if (this.securityBypass) return;
+            throw new Error('A login prompt was requested but has not been implemented in the child class - this function must be replaced!');
+        },
+
+        getLoggedInUserData: function() {
+            throw new Error("The 'getLoggedInUserData' function must be replaced in the child class in order to operate correctly.");
+        },
+
+        isSecured: function() {
+            if (this.securityBypass) return true;
+            var loggedInUserData = this.getLoggedInUserData();
+            return (loggedInUserData !== undefined && loggedInUserData !== null);
+        },
+
+        render: function() {
+            return this.secureRender();
+        },
+
+        secureRender: function() {
+            if (this.isSecured()) {
+                this.$el.html(this.template(this));
+            } else {
+                this.applySecureLoginPrompt();
+            }
+            this.trigger('rendered');
+            return this;
+        }
+    });
 
 
-        /*
+    /*
      * REGION: The Ribs implementation of a View container.
      * ----------------------------------------------------
      * Any class extending BackboneRibs.Region should ensure to call the replaced methods as follows...
@@ -484,59 +484,59 @@
      * views it contains before allowing a new one to be attached, calling the 'trash' method on the view to clean up any
      * used resources. It also has it's own trash method that will clear it's currentView and optionally dispose of itself.
      */
-        Ribs.Region = Ribs.View.extend({
-            name: 'Unnamed Region',
+    Ribs.Region = Ribs.View.extend({
+        name: 'Unnamed Region',
 
-            currentView: undefined,
-            spinner: '<p>Loading...</p>',
+        currentView: undefined,
+        spinner: '<p>Loading...</p>',
 
-            initialize: function(options) {
-                this.options = options || {};
-                Ribs.View.prototype.initialize.call(this, options);
-                if (this.options.currentView) {
-                    this.currentView = this.options.currentView;
-                }
-                _.bindAll(this, 'placeRenderedView');
-                _.bindAll(this, 'showRendering');
-            },
+        initialize: function(options) {
+            this.options = options || {};
+            Ribs.View.prototype.initialize.call(this, options);
+            if (this.options.currentView) {
+                this.currentView = this.options.currentView;
+            }
+            _.bindAll(this, 'placeRenderedView');
+            _.bindAll(this, 'showRendering');
+        },
 
-            placeRenderedView: function() {
-                if (this.currentView !== undefined) {
-                    this.$el.html(this.currentView.$el);
-                    this.currentView.delegateEvents();
+        placeRenderedView: function() {
+            if (this.currentView !== undefined) {
+                this.$el.html(this.currentView.$el);
+                this.currentView.delegateEvents();
 
-                    if (this.currentView.postRender !== undefined && this.currentView.postRender !== null) {
-                        this.currentView.postRender();
-                    }
-                }
-            },
-
-            renderView: function(view) {
-                if (view) {
-                    if (this.currentView) {
-                        this.currentView.trash();
-                    }
-
-                    this.currentView = view;
-                }
-
-                this.currentView.bind('rendering', this.showRendering);
-                this.currentView.bind('rendered', this.placeRenderedView);
-                this.currentView.render();
-            },
-
-            showRendering: function() {
-                this.$el.html(this.spinner);
-            },
-
-            trash: function(disposeRegion) {
-                this.currentView.trash();
-
-                if (disposeRegion !== undefined && disposeRegion !== null && disposeRegion !== false) {
-                    this.dispose();
+                if (this.currentView.postRender !== undefined && this.currentView.postRender !== null) {
+                    this.currentView.postRender();
                 }
             }
-        });
+        },
 
-        return Ribs;
-    }));
+        renderView: function(view) {
+            if (view) {
+                if (this.currentView) {
+                    this.currentView.trash();
+                }
+
+                this.currentView = view;
+            }
+
+            this.currentView.bind('rendering', this.showRendering);
+            this.currentView.bind('rendered', this.placeRenderedView);
+            this.currentView.render();
+        },
+
+        showRendering: function() {
+            this.$el.html(this.spinner);
+        },
+
+        trash: function(disposeRegion) {
+            this.currentView.trash();
+
+            if (disposeRegion !== undefined && disposeRegion !== null && disposeRegion !== false) {
+                this.dispose();
+            }
+        }
+    });
+
+    return Ribs;
+}));

@@ -6,7 +6,7 @@
 
 // ReSharper disable UnusedLocals
 
-    // ReSharper disable InconsistentNaming
+// ReSharper disable InconsistentNaming
 var specFunc = function(Helper, Ribs, Backbone) {
     // ReSharper restore InconsistentNaming
     describe("Backbone Ribs", function() {
@@ -891,7 +891,7 @@ var specFunc = function(Helper, Ribs, Backbone) {
 if (typeof define === 'function' && define.amd) {
     define(['spec-helper', 'ribs', 'backbone'], specFunc);
 } else {
-    specFunc(undefined, Ribs, Backbone);
+    specFunc(window.TestHarness.SpecHelper, window.Ribs, window.Backbone);
 }
 
 // ReSharper restore UnusedLocals

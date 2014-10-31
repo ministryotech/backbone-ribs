@@ -6,28 +6,26 @@
 
 define(['ribs'],
     // ReSharper disable once InconsistentNaming
-    function (Ribs) {
+    function(Ribs) {
 
         var exSecureView = Ribs.SecureView.extend({
-            
-            initialize: function (options) {
-            Ribs.SecureView.prototype.initialize.call(this, options);
+            initialize: function(options) {
+                Ribs.SecureView.prototype.initialize.call(this, options);
             },
-            
-            applySecureLoginPrompt: function () {
+
+            applySecureLoginPrompt: function() {
                 // Do nothing.
             },
-            
+
             applyTimedOutSecureLoginPrompt: function() {
                 // Do nothing.
             }
         });
-        
-        var exRegion = Ribs.Region.extend({
 
+        var exRegion = Ribs.Region.extend({
             spinner: function() { return '<b>Spinning</b>'; }
         });
-        
+
         return {
             Collection: Ribs.Collection,
             Model: Ribs.Model,
