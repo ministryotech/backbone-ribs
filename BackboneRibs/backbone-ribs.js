@@ -153,8 +153,8 @@
     /*
      * MODEL: The Ribs extension of the Backbone Model class.
      * ------------------------------------------------------
-     * Any class extending BackboneRibs.Model should ensure to call the replaced methods as follows...
-     *     BackboneRibs.Model.prototype.initialize.call(this, attributes, options);
+     * Any class extending Ribs.Model should ensure to call the replaced methods as follows...
+     *     Ribs.Model.prototype.initialize.call(this, attributes, options);
      *      
      * Every Ribs based model has a name to help identify it. The name can be passed in as an option to the
      * constructor and will be stored within the model object or can be specified when defining the child
@@ -197,8 +197,8 @@
     /*
      * COLLECTION: The Ribs extension of the Backbone Collection class.
      * ----------------------------------------------------------------
-     * Any class extending BackboneRibs.Collection should ensure to call the replaced methods as follows...
-     *     BackboneRibs.Collection.prototype.initialize.call(this, attributes, options);
+     * Any class extending Ribs.Collection should ensure to call the replaced methods as follows...
+     *     Ribs.Collection.prototype.initialize.call(this, attributes, options);
      *      
      * Every Ribs based collection has a name to help identify it. The name can be passed in as an option to the
      * constructor and will be stored within the collection object or can be specified when defining the child
@@ -234,8 +234,8 @@
     /*
      * VIEW: The Ribs extension of the Backbone View class.
      * ----------------------------------------------------
-     * Any class extending BackboneRibs.View should ensure to call the replaced methods as follows...
-     *     BackboneRibs.View.prototype.initialize.call(this, attributes, options);
+     * Any class extending Ribs.View should ensure to call the replaced methods as follows...
+     *     Ribs.View.prototype.initialize.call(this, attributes, options);
      * The exception to this is the 'render' method. Instead, any extending classes should ensure to trigger the
      * 'rendered' and 'rendering' events during the render lifecycle to ensure thet region integration works as
      * expected (see below).
@@ -348,8 +348,8 @@
     /*
      * SIMPLE VIEW: Specialised Ribs View.
      * -----------------------------------
-     * Any class extending BackboneRibs.SimpleView should ensure to call the replaced methods as follows...
-     *     BackboneRibs.SimpleView.prototype.initialize.call(this, attributes, options);
+     * Any class extending Ribs.SimpleView should ensure to call the replaced methods as follows...
+     *     Ribs.SimpleView.prototype.initialize.call(this, attributes, options);
      * The exception to this is the 'render' method. Instead, any extending classes should ensure to trigger the
      * 'rendered' and 'rendering' events during the render lifecycle to ensure thet region integration works as
      * expected (see below).
@@ -380,8 +380,8 @@
     /*
      * SECURE VIEW: Specialised Ribs View.
      * -----------------------------------
-     * Any class extending BackboneRibs.SecureView should ensure to call the replaced methods as follows...
-     *     BackboneRibs.SecureView.prototype.initialize.call(this, attributes, options);
+     * Any class extending Ribs.SecureView should ensure to call the replaced methods as follows...
+     *     Ribs.SecureView.prototype.initialize.call(this, attributes, options);
      * The exception to this is the 'render' method. Instead, any extending classes should ensure to trigger the
      * 'rendered' and 'rendering' events during the render lifecycle to ensure thet region integration works as
      * expected (see below).
@@ -454,8 +454,8 @@
     /*
      * REGION: The Ribs implementation of a View container.
      * ----------------------------------------------------
-     * Any class extending BackboneRibs.Region should ensure to call the replaced methods as follows...
-     *     BackboneRibs.Region.prototype.initialize.call(this, attributes, options);
+     * Any class extending Ribs.Region should ensure to call the replaced methods as follows...
+     *     Ribs.Region.prototype.initialize.call(this, attributes, options);
      * Region implementations generally tend to be extremely lightweight, as the Backbone Ribs code here does most
      * of what is required.
      * 
