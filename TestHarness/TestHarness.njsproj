@@ -42,7 +42,8 @@
     <Folder Include="spec\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="extended-ribs.js" />
+    <Compile Include="extended-ribs-global.js" />
+    <Compile Include="extended-ribs-require.js" />
     <Compile Include="lib\domReady.js" />
     <Compile Include="lib\jasmine-1.3.1\jasmine-html.js" />
     <Compile Include="lib\jasmine-1.3.1\jasmine-jquery.js" />
