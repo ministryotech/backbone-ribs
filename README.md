@@ -300,8 +300,8 @@ define(['ribs'],
 ### Where can I get it? ###
 You can download the javascript file (dev or minified version) from the downloads page here and add it to your website manually or you can use any of the following package managers...
 
-- **NPM** - TBC
-- **NUGET** - TBC
+- **NPM** - [https://www.npmjs.org/package/backbone-ribs](https://www.npmjs.org/package/backbone-ribs)
+- **NUGET** - [https://www.nuget.org/packages/backbone-ribs](https://www.nuget.org/packages/backbone-ribs)
 
 ### Contribution guidelines ###
 If you would like to contribute to the project, please contact me.
