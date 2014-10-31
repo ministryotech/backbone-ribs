@@ -17,6 +17,27 @@ Add a reference to Backbone and it's dependencies to your page as follows. Paths
     <script src="node_modules/backbone-ribs/backbone-ribs.js"></script>
 ```
 
+#### To set up with RequireJS ####
+With RequireJS in use you I use the following as a base RequireJS config (again assuming NPM paths)...
+```
+#!javascript
+require.config({
+    baseUrl: "{insert your app base url here - commonly empty, app/ or scripts/}",
+    paths: {
+        jquery: "node_modules/jquery/dist/jquery",
+        underscore: "node_modules/backbone-ribs/node_modules/backbone/node_modules/underscore/underscore",
+        backbone: "node_modules/backbone-ribs/node_modules/backbone/backbone",
+        ribs: "node_modules/backbone-ribs/backbone-ribs"
+    },
+    shim: {
+        jquery: { exports: '$' },
+        underscore: { exports: '_' },
+        backbone: { deps: ['underscore', 'jquery'], exports: 'Backbone' },
+        ribs: { deps: ['backbone', 'underscore', 'jquery'], exports: 'Ribs' }
+    }
+});
+```
+
 ### How do I use it? ###
 My recommended usage pattern is to follow the same principle that Ribs itself follows and to create your own variation of ribs that extends the Ribs object elements themselves. This allows for integration of Ribs or Backbone updates while minimising the potential for breaking your code but allows you to slip in your own variations into the model for your own app.
 
