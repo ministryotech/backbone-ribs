@@ -1,4 +1,4 @@
-# README #
+# backbone-ribs.js #
 
 Backbone Ribs is an extension project which adds an additional layer of functionality to Backbone that simplifies creation of basic types of views, adds more granular JSON handling and separates concerns further by separating Views from Regions (see Views and regions below for details) which enables proper garbage handling without having to roll it all yourself.
 
@@ -296,6 +296,17 @@ define(['ribs'],
         };
     });
 ```
+
+## The Ministry of Technology Open Source Products ##
+Welcome to The Ministry of Technology open source products. All open source Ministry of Technology products are distributed under the MIT License for maximum re-usability. Details on more of our products and services can be found on our website at http://www.ministryotech.co.uk
+
+Our other open source repositories can be found here...
+
+[https://bitbucket.org/ministryotech](https://bitbucket.org/ministryotech)
+
+[https://github.com/tiefling](https://github.com/tiefling)
+
+Most of our content is stored on BitBucket, but we also do some Umbraco related projects and with Umbraco itself hosted on GitHub it made sense to host those there too.
 
 ### Where can I get it? ###
 You can download the javascript file (dev or minified version) from the downloads page here and add it to your website manually or you can use any of the following package managers...
