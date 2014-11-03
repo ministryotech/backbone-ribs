@@ -1,6 +1,6 @@
 {
   "name": "backbone-ribs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An extension project which adds an additional layer of functionality to Backbone that simplifies creation of basic types of views and separates Views from Regions which enables proper garbage handling without having to roll it all yourself.",
   "keywords": "backbone ribs view region model collection  secureview simpleview helpers attribute json requirejs",
   "homepage": "https://bitbucket.org/ministryotech/backbone-ribs",
