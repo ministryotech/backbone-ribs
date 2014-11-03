@@ -4,41 +4,27 @@
 <head>
     <title>Jasmine Spec Runner for Backbone Ribs (Using Direct Mode)</title>
 
-    <link rel="stylesheet" type="text/css" href="lib/jasmine-1.3.1/jasmine.css" />
+    <link rel="stylesheet" type="text/css" href="node_modules/jasmine/node_modules/jasmine-core/lib/jasmine-core/jasmine.css">
 
+    <script type="text/javascript" src="node_modules/jasmine/node_modules/jasmine-core/lib/jasmine-core/jasmine.js"></script>
+    <script type="text/javascript" src="node_modules/jasmine/node_modules/jasmine-core/lib/jasmine-core/jasmine-html.js"></script>
+    <script type="text/javascript" src="node_modules/jasmine/node_modules/jasmine-core/lib/jasmine-core/boot.js"></script>
+    
+    <!-- include dependencies here... -->
     <script src="node_modules/jquery/dist/jquery.js"></script>
     <script src="node_modules/backbone/node_modules/underscore/underscore.js"></script>
     <script src="node_modules/backbone/backbone.js"></script>
+    <script src="node_modules/json2/lib/JSON2/static/json2.js"></script>
 
+    <!-- include source files here... -->
     <script src="../BackboneRibs/backbone-ribs.js"></script>
     <script src="extended-ribs-global.js"></script>
 
-    <script src="lib/jasmine-1.3.1/jasmine.js"></script>
-    <script src="lib/jasmine-1.3.1/jasmine-html.js"></script>
-    <script src="lib/jasmine-1.3.1/jasmine-jquery.js"></script>
-    <script src="node_modules/json2/lib/JSON2/static/json2.js"></script>
     <script src="spec-helper.js"></script>
-    
+
+    <!-- include spec files here... -->
     <script src="spec/backbone-ribs-spec.js"></script>
     <script src="spec/extended-ribs-spec.js"></script>
-
-    <script type="text/javascript">
-        var jasmineEnv = jasmine.getEnv();
-        jasmineEnv.updateInterval = 1000;
-
-        var htmlReporter = new jasmine.HtmlReporter();
-
-        jasmineEnv.addReporter(htmlReporter);
-
-        jasmineEnv.specFilter = function (spec) {
-            return htmlReporter.specFilter(spec);
-        };
-
-        setTimeout(function() {
-            jasmineEnv.execute();
-        }, 3000);
-    </script>
-
 </head>
 
 <body>

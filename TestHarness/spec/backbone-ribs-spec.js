@@ -128,7 +128,7 @@ var specFunc = function(Helper, Ribs, Backbone) {
 
                 it("delegates to 'isNullAttribute' before performing further checks", function() {
                     // ReSharper disable UnusedParameter
-                    spyOn(objUt, 'isNullAttribute').andCallFake(function(attributes, attributeName) {
+                    spyOn(objUt, 'isNullAttribute').and.callFake(function(attributes, attributeName) {
                         // ReSharper restore UnusedParameter
                         return true;
                     });
@@ -174,7 +174,7 @@ var specFunc = function(Helper, Ribs, Backbone) {
 
                 it("delegates to 'isNullAttribute' before performing further checks", function() {
                     // ReSharper disable UnusedParameter
-                    spyOn(objUt, 'isNullAttribute').andCallFake(function(attributes, attributeName) {
+                    spyOn(objUt, 'isNullAttribute').and.callFake(function(attributes, attributeName) {
                         // ReSharper restore UnusedParameter
                         return true;
                     });
@@ -539,11 +539,11 @@ var specFunc = function(Helper, Ribs, Backbone) {
 
                 it("unbinds events to prevent Zombies with hard disposal", function() {
                     var objUt = new Ribs.View();
-                    spyOn(objUt, 'unbindFromAllModels').andCallThrough();
-                    spyOn(objUt, 'stopListening').andCallThrough();
-                    spyOn(objUt, 'unbind').andCallThrough();
-                    spyOn(objUt, 'remove').andCallThrough();
-                    spyOn(objUt, 'undelegateEvents').andCallThrough();
+                    spyOn(objUt, 'unbindFromAllModels').and.callThrough();
+                    spyOn(objUt, 'stopListening').and.callThrough();
+                    spyOn(objUt, 'unbind').and.callThrough();
+                    spyOn(objUt, 'remove').and.callThrough();
+                    spyOn(objUt, 'undelegateEvents').and.callThrough();
 
                     objUt.dispose();
 
@@ -602,7 +602,7 @@ var specFunc = function(Helper, Ribs, Backbone) {
             // This is disabled as I cannot make the test work consistently
             //it("implements a default rendering method that triggers an event when completed", function () {
             //    var objUt = new Ribs.SimpleView({ template: function () { return "Bob"; } });
-            //    spyOn(Backbone.View.prototype, 'trigger').andCallThrough();
+            //    spyOn(Backbone.View.prototype, 'trigger').and.callThrough();
             //    objUt.render();
 
 
@@ -666,7 +666,7 @@ var specFunc = function(Helper, Ribs, Backbone) {
 
             it("default rendering method does a secure render by default", function() {
                 var objUt = new Ribs.SecureView({ template: function() { return "Bob"; }, securityBypass: true });
-                spyOn(objUt, 'secureRender').andCallFake(Helper.DoNothing);
+                spyOn(objUt, 'secureRender').and.callFake(Helper.DoNothing);
                 objUt.render();
 
                 expect(objUt.secureRender).toHaveBeenCalled();
@@ -704,10 +704,10 @@ var specFunc = function(Helper, Ribs, Backbone) {
                 });
 
                 it("will occur if the page is regarded as being secure", function() {
-                    spyOn(objUt, 'isSecured').andCallFake(function() {
+                    spyOn(objUt, 'isSecured').and.callFake(function() {
                         return true;
                     });
-                    spyOn(objUt, 'applySecureLoginPrompt').andCallFake(Helper.DoNothing);
+                    spyOn(objUt, 'applySecureLoginPrompt').and.callFake(Helper.DoNothing);
 
                     objUt.secureRender();
                     expect(objUt.isSecured).toHaveBeenCalled();
@@ -716,10 +716,10 @@ var specFunc = function(Helper, Ribs, Backbone) {
                 });
 
                 it("will not occur if the page is regarded as being secure and will prompt for login instead", function() {
-                    spyOn(objUt, 'isSecured').andCallFake(function() {
+                    spyOn(objUt, 'isSecured').and.callFake(function() {
                         return false;
                     });
-                    spyOn(objUt, 'applySecureLoginPrompt').andCallFake(Helper.DoNothing);
+                    spyOn(objUt, 'applySecureLoginPrompt').and.callFake(Helper.DoNothing);
 
                     objUt.secureRender();
                     expect(objUt.isSecured).toHaveBeenCalled();
@@ -762,12 +762,12 @@ var specFunc = function(Helper, Ribs, Backbone) {
 
                 it("only having one view at any one time", function() {
                     var testViewStart = new Ribs.View({ name: "Test View" });
-                    spyOn(testViewStart, 'trash').andCallThrough();
-                    spyOn(testViewStart, 'render').andCallThrough();
+                    spyOn(testViewStart, 'trash').and.callThrough();
+                    spyOn(testViewStart, 'render').and.callThrough();
 
                     var testViewNew = new Ribs.View({ template: function() { return "Sally"; } });
-                    spyOn(testViewNew, 'trash').andCallThrough();
-                    spyOn(testViewNew, 'render').andCallThrough();
+                    spyOn(testViewNew, 'trash').and.callThrough();
+                    spyOn(testViewNew, 'render').and.callThrough();
 
                     var objUt = new Ribs.Region({ el: '#jasmineSpecTestArea', currentView: testViewStart });
 
@@ -783,7 +783,7 @@ var specFunc = function(Helper, Ribs, Backbone) {
 
                 it("rendering the content of the supplied view within itself", function() {
                     var testView = new Ribs.SimpleView({ template: function() { return "Sally"; } });
-                    spyOn(testView, 'render').andCallThrough();
+                    spyOn(testView, 'render').and.callThrough();
 
                     var objUt = new Ribs.Region({ el: '#jasmineSpecTestArea' });
 
@@ -796,8 +796,8 @@ var specFunc = function(Helper, Ribs, Backbone) {
 
                 it("rendering the current view if no instance supplied", function() {
                     var testView = new Ribs.View({ name: "Test View" });
-                    spyOn(testView, 'trash').andCallThrough();
-                    spyOn(testView, 'render').andCallThrough();
+                    spyOn(testView, 'trash').and.callThrough();
+                    spyOn(testView, 'render').and.callThrough();
 
                     var objUt = new Ribs.Region({ el: '#jasmineSpecTestArea', currentView: testView });
 
@@ -810,7 +810,7 @@ var specFunc = function(Helper, Ribs, Backbone) {
 
                 it("manually delegates events for the current view to allow reloading without errors", function() {
                     var testView = new Ribs.View({ name: "Test View" });
-                    spyOn(testView, 'render').andCallThrough();
+                    spyOn(testView, 'render').and.callThrough();
                     spyOn(testView, 'delegateEvents');
 
                     var objUt = new Ribs.Region({ el: '#jasmineSpecTestArea', currentView: testView });
@@ -825,7 +825,7 @@ var specFunc = function(Helper, Ribs, Backbone) {
 
                 it("triggering a postRender method if present in the current view", function() {
                     var testView = new Ribs.View({ name: "Test View" });
-                    spyOn(testView, 'render').andCallThrough();
+                    spyOn(testView, 'render').and.callThrough();
                     testView.postRender = jasmine.createSpy('postRender() spy');
 
                     var objUt = new Ribs.Region({ el: '#jasmineSpecTestArea', currentView: testView });
@@ -841,7 +841,7 @@ var specFunc = function(Helper, Ribs, Backbone) {
                 it("responding to the rendered event of the current view by rendering the view within the region", function() {
                     var testView = new Ribs.SimpleView({ template: function() { return "Bob"; } });
                     var objUt = new Ribs.Region({ el: '#jasmineSpecTestArea', currentView: testView });
-                    spyOn(objUt, 'placeRenderedView').andCallThrough();
+                    spyOn(objUt, 'placeRenderedView').and.callThrough();
                     objUt.renderView();
                     expect(objUt.placeRenderedView).toHaveBeenCalled();
                 });
@@ -854,7 +854,7 @@ var specFunc = function(Helper, Ribs, Backbone) {
                     });
                     var testView = new testViewObj({ template: function() { return "Bob"; } });
                     var objUt = new Ribs.Region({ el: '#jasmineSpecTestArea', currentView: testView });
-                    spyOn(objUt, 'showRendering').andCallThrough();
+                    spyOn(objUt, 'showRendering').and.callThrough();
                     objUt.renderView();
                     expect(objUt.showRendering).toHaveBeenCalled();
                     expect(objUt.$el.html().toLowerCase()).toContain('<p>loading...</p>');
@@ -862,7 +862,7 @@ var specFunc = function(Helper, Ribs, Backbone) {
 
                 it("by overriding trash() to dispose currentView", function() {
                     var testView = new Ribs.View({ name: "Test View" });
-                    spyOn(testView, 'trash').andCallThrough();
+                    spyOn(testView, 'trash').and.callThrough();
 
                     var objUt = new Ribs.Region({ el: '#jasmineSpecTestArea', currentView: testView });
 
@@ -873,7 +873,7 @@ var specFunc = function(Helper, Ribs, Backbone) {
 
                 it("by allowing trash() to optionally destroy the region itself", function() {
                     var testView = new Ribs.View({ name: "Test View" });
-                    spyOn(testView, 'trash').andCallThrough();
+                    spyOn(testView, 'trash').and.callThrough();
 
                     var objUt = new Ribs.Region({ el: '#jasmineSpecTestArea', currentView: testView });
                     spyOn(objUt, 'dispose');
@@ -891,7 +891,7 @@ var specFunc = function(Helper, Ribs, Backbone) {
 if (typeof define === 'function' && define.amd) {
     define(['spec-helper', 'ribs', 'backbone'], specFunc);
 } else {
-    specFunc(window.TestHarness.SpecHelper, window.Ribs, window.Backbone);
+    specFunc(TestHarness.SpecHelper, Ribs, Backbone);
 }
 
 // ReSharper restore UnusedLocals

@@ -96,7 +96,7 @@ var specFunc = function(Helper, Ribs, ExtendedRibs) {
                 });
                 var testView = new testViewObj({ template: function() { return "Bob"; } });
                 var objUt = new ExtendedRibs.Region({ el: '#jasmineSpecTestArea', currentView: testView });
-                spyOn(objUt, 'showRendering').andCallThrough();
+                spyOn(objUt, 'showRendering').and.callThrough();
                 objUt.renderView();
                 expect(objUt.showRendering).toHaveBeenCalled();
                 expect(objUt.$el.html().toLowerCase()).toContain('<b>spinning</b>');
@@ -109,5 +109,5 @@ var specFunc = function(Helper, Ribs, ExtendedRibs) {
 if (typeof define === 'function' && define.amd) {
     define(['spec-helper', 'ribs', 'extendedribs'], specFunc);
 } else {
-    specFunc(window.TestHarness.SpecHelper, window.Ribs, window.ExtendedRibs);
+    specFunc(TestHarness.SpecHelper, Ribs, ExtendedRibs);
 }
