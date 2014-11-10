@@ -1,5 +1,5 @@
 ﻿/*
-    Backbone Ribs 1.0.0
+    Backbone Ribs 1.0.2
     -------------------
     Base classes and app level elements to enhance Backbone.JS.
 
@@ -47,7 +47,7 @@
         return obj !== undefined && obj !== null;
     };
     Object.isTruthy = function(obj) {
-        return obj !== undefined && obj !== null && obj == true;
+        return obj !== undefined && obj !== null && obj === true;
     };
     Object.isFunction = function(functionToCheck) {
         if (!Object.exists(functionToCheck)) return false;
@@ -129,14 +129,14 @@
                     } else {
                         json[name] = value;
                     }
-                };
+                }
                 if ((value !== undefined && value !== null) && _.isFunction(value.toJSON)) {
                     if (level > 0) {
                         json[name] = convertNestedJson(value.toJSON(), level - 1);
                     } else {
                         json[name] = value.toJSON();
                     }
-                };
+                }
             });
             return json;
         };
@@ -539,7 +539,7 @@
         }
     });
 
-    Ribs.VERSION = "1.0.0";
+    Ribs.VERSION = "1.0.2";
 
     return Ribs;
 }));

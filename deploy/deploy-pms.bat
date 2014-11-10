@@ -4,7 +4,10 @@ REM -- Uncomment to Init NPM first run --
 REM CALL ..\..\set-npm.bat
 
 ECHO Compiling JS...
-CALL ..\BackboneRibs\node_modules\.bin\minify ..\BackboneRibs\backbone-ribs.js
+CD ..\BackboneRibs
+CALL grunt
+CD ..\deploy
+pause
 
 ECHO Preparing NuGet...
 CALL ..\..\set-nuget-key.bat
