@@ -2,16 +2,16 @@
 <package >
   <metadata>
     <id>backbone-ribs</id>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <authors>The Ministry of Technology</authors>
     <owners>The Ministry of Technology</owners>
     <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
-    <projectUrl>https://bitbucket.org/ministryotech/backbone-ribs</projectUrl>
+    <projectUrl>https://github.com/ministryotech/backbone-ribs</projectUrl>
     <iconUrl>http://www.ministryotech.co.uk/</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <summary>Backbone with View / Container separation and loads more.</summary>
     <description>Backbone Ribs is an extension project which adds an additional layer of functionality to Backbone that simplifies creation of basic types of views, adds more granular JSON handling and separates concerns further by separating Views from Regions (see Views and regions below for details) which enables propper garbage handling without having to roll it all yourself.</description>
-    <releaseNotes>Added Grunt and Uglify.</releaseNotes>
+    <releaseNotes>Moved from Bitbucket to Github.</releaseNotes>
     <copyright>Copyright 2014 Minotech Ltd T/A The Ministry of Technology</copyright>
     <tags>Javascript Backbone Ribs View Region Model Collection SecureView SimpleView Helpers Attribute JSON RequireJS</tags>
     <dependencies>
