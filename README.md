@@ -9,19 +9,17 @@ Many of the Ribs versions of the core Backbone objects listed below are extended
 The Attribute Checker extension is used to simplify attribute value checking. It offers methods to extend models and collections that allow for less verbose validation code to be written either for validation methods or when attributes are required to be passed in on instantiation.
      
 For example, when checking attribute values in your model rather than writing this in traditional Backbone...
-```
-#!javascript
-if (attributes === undefined || attributes === null || attributes.myAttr === undefined || attributes.myAttr === null) {
-	throw new Error('The myAttr attribute is required.')
-};
-```
+
+	if (attributes === undefined || attributes === null || attributes.myAttr === undefined || attributes.myAttr === null) {
+		throw new Error('The myAttr attribute is required.')
+	};
+
 ... you can now write this instead...
-```
-#!javascript
-if (this.isNullAttribute(attributes, 'myAttr')) {
-	throw new Error('The myAttr attribute is required.')
-};
-```
+
+	if (this.isNullAttribute(attributes, 'myAttr')) {
+		throw new Error('The myAttr attribute is required.')
+	};
+
 The attribute checker exposes the following methods within any of the Objects that are extended by it...
 
 * isNullAttribute()
@@ -40,10 +38,9 @@ Ribs currently exposes the following primary objects from Backbone object in an 
 
 #### Ribs.Model ####
 Any class extending Ribs.Model should ensure to call the replaced methods as follows...
-```
-#!javascript
-Ribs.Model.prototype.initialize.call(this, attributes, options);
-```
+
+	Ribs.Model.prototype.initialize.call(this, attributes, options);
+
 Every Ribs based model has a name to help identify it. The name can be passed in as an option to the constructor and will be stored within the model object or can be specified when defining the child class. A Ribs model applies a default validity check that will log any validation errors to the console and throw them up the tree for handling as needed.
      
 EVENTS:
@@ -57,10 +54,9 @@ IMPLEMENTS:
 
 #### Ribs.Collection ####
 Any class extending Ribs.Collection should ensure to call the replaced methods as follows...
-```
-#!javascript
-Ribs.Collection.prototype.initialize.call(this, attributes, options);
-```
+
+	Ribs.Collection.prototype.initialize.call(this, attributes, options);
+
 Every Ribs based collection has a name to help identify it. The name can be passed in as an option to the constructor and will be stored within the collection object or can be specified when defining the child class. A Ribs model applies a default validity check that will log any validation errors to the console and throw them up the tree for handling as needed.
      
 EVENTS:
@@ -74,10 +70,9 @@ IMPLEMENTS:
 
 #### Ribs.Region ####
 Any class extending Ribs.Region should ensure to call the replaced methods as follows...
-```
-#!javascript
-Ribs.Region.prototype.initialize.call(this, attributes, options);
-```
+
+	Ribs.Region.prototype.initialize.call(this, attributes, options);
+
 Region implementations generally tend to be extremely lightweight, as the Backbone Ribs code here does most of what is required.
 
 Although Backbone allows much variation; best practice when using Ribs is to look at a 'View' as being responsible for itself in that it's a piece of contained markup that is NOT attached to anything on a page. In a Ribs based App containers on a page are wrapped by Regions instead and the regions are responsible for then rendering a view into the container that they represent. SO the basic rule is...
@@ -97,10 +92,9 @@ VIEW LIFECYCLE: One of the biggest issues in Backbone revolves around the View l
 
 #### Ribs.View ####
 Any class extending Ribs.View should ensure to call the replaced methods as follows...
-```
-#!javascript
-Ribs.View.prototype.initialize.call(this, attributes, options);
-```
+
+	Ribs.View.prototype.initialize.call(this, attributes, options);
+
 The exception to this is the 'render' method. Instead, any extending classes should ensure to trigger the 'rendered' and 'rendering' events during the render lifecycle to ensure thet region integration works as expected (see 'Ribs.Region', above).
           
 Every Ribs based view has a name to help identify it. The name can be passed in as an option to the constructor and will be stored within the view object or can be specified when defining the child class.
@@ -127,20 +121,18 @@ BEST PRACTICE: Although Backbone allows much variation; best practice when using
 
 #### Ribs.SimpleView ####
 Any class extending Ribs.SimpleView should ensure to call the replaced methods as follows...
-```
-#!javascript
-Ribs.SimpleView.prototype.initialize.call(this, attributes, options);
-```
+
+	Ribs.SimpleView.prototype.initialize.call(this, attributes, options);
+
 The exception to this is the 'render' method. Instead, any extending classes should ensure to trigger the 'rendered' and 'rendering' events during the render lifecycle to ensure thet region integration works as expected (see 'Ribs.Region', above).
    
 USAGE: Some views are very basic - They have a template and it's rendered. There's no data to worry about. The Ribs Simple view is for just those cases, where a simple extension or instantiation with a template is all that is needed.
 
 #### Ribs.SecureView ####
 Any class extending Ribs.SecureView should ensure to call the replaced methods as follows...
-```
-#!javascript
-Ribs.SecureView.prototype.initialize.call(this, attributes, options);
-```
+
+	Ribs.SecureView.prototype.initialize.call(this, attributes, options);
+
 The exception to this is the 'render' method. Instead, any extending classes should ensure to trigger the 'rendered' and 'rendering' events during the render lifecycle to ensure thet region integration works as expected (see 'Ribs.Region', above).
    
 It is recommended that the app developer creates an app specific version of this class and replaces the following default methods with app specific implementations...
@@ -150,26 +142,25 @@ It is recommended that the app developer creates an app specific version of this
 * applyTimedOutSecureLoginPrompt()
 
 This could look something like this...
-```
-#!javascript
-MyAppRibs.SecureView = window.Ribs.SecureView.extend({
-    initialize: function(options) {
-        window.Ribs.SecureView.prototype.initialize.call(this, options);
-    },
 
-    applySecureLoginPrompt: function() {
-        MyAppView.LoginScreen.render();
-    },
+	MyAppRibs.SecureView = window.Ribs.SecureView.extend({
+	    initialize: function(options) {
+		window.Ribs.SecureView.prototype.initialize.call(this, options);
+	    },
 
-    applyTimedOutSecureLoginPrompt: function() {
-        MyAppView.LoginScreen.render('Your session has timed out');
-    },
+	    applySecureLoginPrompt: function() {
+		MyAppView.LoginScreen.render();
+	    },
 
-    getLoggedInUserData: function() {
-        // Load data from a stored session cookie.
-    }
-});
-```
+	    applyTimedOutSecureLoginPrompt: function() {
+		MyAppView.LoginScreen.render('Your session has timed out');
+	    },
+
+	    getLoggedInUserData: function() {
+		// Load data from a stored session cookie.
+	    }
+	});
+
           
 Every SecureView has an optional flag to set that will bypass the secure elements. This is extremely useful when testing the general components of the view when you don't want to hit security walls. The flag can be passed in as an option to the constructor and will be stored within the view object.
      
@@ -196,117 +187,106 @@ Like Backbone itself, Ribs is designed to be used either traditionallly, exposin
 
 #### To set up as a Global scope object ####
 Add a reference to Backbone and it's dependencies to your page as follows. Paths may vary, but the paths given here assume that the Backbone-Ribs reference was obtained from NPM...
-```
-#!html
+
     <script src="node_modules/backbone-ribs/node_modules/backbone/node_modules/underscore/underscore.js"></script>
     <script src="node_modules/backbone-ribs/node_modules/backbone/backbone.js"></script>
     <script src="node_modules/backbone-ribs/backbone-ribs.js"></script>
-```
 
 #### To set up with RequireJS ####
 With RequireJS in use you I use the following as a base RequireJS config (again assuming NPM paths)...
-```
-#!javascript
-require.config({
-    baseUrl: "{insert your app base url here - commonly empty, app/ or scripts/}",
-    paths: {
-        jquery: "node_modules/jquery/dist/jquery",
-        underscore: "node_modules/backbone-ribs/node_modules/backbone/node_modules/underscore/underscore",
-        backbone: "node_modules/backbone-ribs/node_modules/backbone/backbone",
-        ribs: "node_modules/backbone-ribs/backbone-ribs"
-    },
-    shim: {
-        jquery: { exports: '$' },
-        underscore: { exports: '_' },
-        backbone: { deps: ['underscore', 'jquery'], exports: 'Backbone' },
-        ribs: { deps: ['backbone', 'underscore', 'jquery'], exports: 'Ribs' }
-    }
-});
-```
+
+	require.config({
+	    baseUrl: "{insert your app base url here - commonly empty, app/ or scripts/}",
+	    paths: {
+		jquery: "node_modules/jquery/dist/jquery",
+		underscore: "node_modules/backbone-ribs/node_modules/backbone/node_modules/underscore/underscore",
+		backbone: "node_modules/backbone-ribs/node_modules/backbone/backbone",
+		ribs: "node_modules/backbone-ribs/backbone-ribs"
+	    },
+	    shim: {
+		jquery: { exports: '$' },
+		underscore: { exports: '_' },
+		backbone: { deps: ['underscore', 'jquery'], exports: 'Backbone' },
+		ribs: { deps: ['backbone', 'underscore', 'jquery'], exports: 'Ribs' }
+	    }
+	});
 
 ### How do I use it? ###
 My recommended usage pattern is to follow the same principle that Ribs itself follows and to create your own variation of ribs that extends the Ribs object elements themselves. This allows for integration of Ribs or Backbone updates while minimising the potential for breaking your code but allows you to slip in your own variations into the model for your own app.
 
 In a global scope object style a sample extended version of Ribs may look something like this...
-```
-#!javascript
-(function() {
 
-    if (window.Ribs === undefined)
-        throw 'Ribs has not been set up on the page.';
+	(function() {
 
-    window.MyAppRibs = window.MyAppRibs || {};
+	    if (window.Ribs === undefined)
+		throw 'Ribs has not been set up on the page.';
 
-    window.MyAppRibs.Collection = window.Ribs.Collection;
-    window.MyAppRibs.Model = window.Ribs.Model;
-    window.MyAppRibs.View = window.Ribs.View;
-    window.MyAppRibs.SimpleView = window.Ribs.SimpleView;
+	    window.MyAppRibs = window.MyAppRibs || {};
 
-    window.MyAppRibs.SecureView = window.Ribs.SecureView.extend({
-        initialize: function(options) {
-            window.Ribs.SecureView.prototype.initialize.call(this, options);
-        },
+	    window.MyAppRibs.Collection = window.Ribs.Collection;
+	    window.MyAppRibs.Model = window.Ribs.Model;
+	    window.MyAppRibs.View = window.Ribs.View;
+	    window.MyAppRibs.SimpleView = window.Ribs.SimpleView;
 
-        applySecureLoginPrompt: function() {
-            // Show your app's login screen.
-        },
+	    window.MyAppRibs.SecureView = window.Ribs.SecureView.extend({
+		initialize: function(options) {
+		    window.Ribs.SecureView.prototype.initialize.call(this, options);
+		},
 
-        applyTimedOutSecureLoginPrompt: function() {
-            // Show your app's login screen with a timed out message.
-        }
-    });
+		applySecureLoginPrompt: function() {
+		    // Show your app's login screen.
+		},
 
-    window.MyAppRibs.Region = window.Ribs.Region.extend({
-        spinner: function() { return '<b>Your apps spinner here...</b>'; }
-    });
-})();
-```
+		applyTimedOutSecureLoginPrompt: function() {
+		    // Show your app's login screen with a timed out message.
+		}
+	    });
+
+	    window.MyAppRibs.Region = window.Ribs.Region.extend({
+		spinner: function() { return '<b>Your apps spinner here...</b>'; }
+	    });
+	})();
 
 Using RequireJS (which I wholeheartedly recommend if using Backbone and Ribs) it would look like this...
-```
-#!javascript
-define(['ribs'],
-    function(Ribs) {
 
-        var exSecureView = Ribs.SecureView.extend({
-            initialize: function(options) {
-                Ribs.SecureView.prototype.initialize.call(this, options);
-            },
+	define(['ribs'],
+	    function(Ribs) {
 
-            applySecureLoginPrompt: function() {
-                // Show your app's login screen.
-            },
+		var exSecureView = Ribs.SecureView.extend({
+		    initialize: function(options) {
+			Ribs.SecureView.prototype.initialize.call(this, options);
+		    },
 
-            applyTimedOutSecureLoginPrompt: function() {
-                // Show your app's login screen with a timed out message.
-            }
-        });
+		    applySecureLoginPrompt: function() {
+			// Show your app's login screen.
+		    },
 
-        var exRegion = Ribs.Region.extend({
-            spinner: function() { return '<b>Your apps spinner here...</b>'; }
-        });
+		    applyTimedOutSecureLoginPrompt: function() {
+			// Show your app's login screen with a timed out message.
+		    }
+		});
 
-        return {
-            Collection: Ribs.Collection,
-            Model: Ribs.Model,
-            View: Ribs.View,
-            SimpleView: Ribs.SimpleView,
-            SecureView: exSecureView,
-            Region: exRegion
-        };
-    });
-```
+		var exRegion = Ribs.Region.extend({
+		    spinner: function() { return '<b>Your apps spinner here...</b>'; }
+		});
+
+		return {
+		    Collection: Ribs.Collection,
+		    Model: Ribs.Model,
+		    View: Ribs.View,
+		    SimpleView: Ribs.SimpleView,
+		    SecureView: exSecureView,
+		    Region: exRegion
+		};
+	    });
 
 ## The Ministry of Technology Open Source Products ##
-Welcome to The Ministry of Technology open source products. All open source Ministry of Technology products are distributed under the MIT License for maximum re-usability. Details on more of our products and services can be found on our website at http://www.ministryotech.co.uk
+Welcome to The Ministry of Technology open source products. All open source Ministry of Technology products are distributed under the MIT License for maximum re-usability. Details on more of our products and services can be found on our website at http://www.minotech.co.uk
 
 Our other open source repositories can be found here...
 
-* [https://bitbucket.org/ministryotech](https://bitbucket.org/ministryotech)
 * [https://github.com/ministryotech](https://github.com/ministryotech)
 * [https://github.com/tiefling](https://github.com/tiefling)
-
-Most of our content is stored on both Github and Bitbucket.
 
 ### Where can I get it? ###
 You can download the javascript file (dev or minified version) from the downloads page here and add it to your website manually or you can use any of the following package managers...
@@ -320,4 +300,4 @@ If you would like to contribute to the project, please contact me.
 The source code can be used in a simple text editor or within Visual Studio using NodeJS Tools for Visual Studio.
 
 ### Who do I talk to? ###
-* Keith Jackson - keith@ministryotech.co.uk
+* Keith Jackson - keith@minotech.co.uk
